@@ -1,0 +1,38 @@
+═══════════════════════════════════════════════════════════════
+     🚦 QUICK REFERENCE - Simple Intersection Demo
+═══════════════════════════════════════════════════════════════
+
+▶ TO RUN THE DEMO:
+  cd /Users/vidyacheekuri/Local_Storage/Traffic_simulator
+  python3 run_simple_demo.py
+
+▶ SUMO-GUI CONTROLS:
+  ▶️ Play Button       = Start simulation
+  ⏸️ Pause             = Press SPACE
+  🔍 Zoom              = Mouse wheel
+  👆 Pan               = Right-click + drag
+  📐 Fit view          = Ctrl+F
+  ⚡ Speed up          = Move Delay slider LEFT
+
+▶ WHAT YOU BUILT:
+  • 1 four-way intersection
+  • Traffic lights (30s Green, 5s Yellow)
+  • 46 vehicles from 4 directions
+  • IDM car-following model
+  • Multiple turning movements
+
+▶ KEY TALKING POINTS:
+  1. "This is a SUMO traffic simulation"
+  2. "Traffic lights cycle through phases"
+  3. "Vehicles stop at red, proceed on green"
+  4. "Different colors = different routes"
+  5. "Realistic queuing behavior"
+
+▶ IF SOMETHING BREAKS:
+  • Restart: python3 run_simple_demo.py
+  • Direct: sumo-gui --configuration-file simple_intersection.sumocfg
+  • XQuartz issue: Restart Mac
+
+═══════════════════════════════════════════════════════════════
+              YOU'VE GOT THIS! 💪
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <!-- Vehicle Type -->
+    <vType id="car" carFollowModel="IDM" color="255,255,0" length="5.0">
+        <param key="accel" value="2.6"/>
+        <param key="decel" value="4.5"/>
+        <param key="tau" value="1.0"/>
+        <param key="minGap" value="2.5"/>
+        <param key="sigma" value="0.5"/>
+    </vType>
+
+    <!-- Flows sorted by begin time (SUMO requirement) -->
+    <!-- begin 0 -->
+    <personFlow id="ped_ns" begin="0" end="600" period="15">
+        <walk from="north_in" to="south_in"/>
+    </personFlow>
+    <flow id="north_south" type="car" begin="0" end="300" number="50" from="north_in" to="south_out" color="30,144,255"/>
+    <flow id="south_north" type="car" begin="0" end="300" number="50" from="south_in" to="north_out" color="255,20,147"/>
+    <flow id="east_west" type="car" begin="0" end="300" number="40" from="east_in" to="west_out" color="147,112,219"/>
+    <flow id="west_east" type="car" begin="0" end="300" number="40" from="west_in" to="east_out" color="255,165,0"/>
+    <!-- begin 5 -->
+    <personFlow id="ped_sn" begin="5" end="600" period="15">
+        <walk from="south_in" to="north_in"/>
+    </personFlow>
+    <!-- begin 10 -->
+    <personFlow id="ped_ew" begin="10" end="600" period="15">
+        <walk from="east_in" to="west_in"/>
+    </personFlow>
+    <flow id="north_east" type="car" begin="10" end="280" number="25" from="north_in" to="east_out" color="50,205,50"/>
+    <flow id="south_west" type="car" begin="10" end="280" number="25" from="south_in" to="west_out" color="255,69,0"/>
+    <!-- begin 15 -->
+    <personFlow id="ped_we" begin="15" end="600" period="15">
+        <walk from="west_in" to="east_in"/>
+    </personFlow>
+    <flow id="east_south" type="car" begin="15" end="285" number="20" from="east_in" to="south_out" color="255,255,0"/>
+    <flow id="west_north" type="car" begin="15" end="285" number="20" from="west_in" to="north_out" color="0,255,255"/>
+
+</routes>

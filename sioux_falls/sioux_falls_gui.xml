@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewsettings>
+    <!-- "real world" = car shapes (not triangles); scaleLength=0 = no stretch on curved roads -->
+    <scheme name="real world">
+        <vehicles scaleLength="0"/>
+    </scheme>
+    <delay value="150"/>
+    <viewport zoom="1200" x="300" y="600"/>
+    <background backgroundColor="50,50,50"/>
+</viewsettings>

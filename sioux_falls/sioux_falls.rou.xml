@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <!-- Single vehicle type: Regular passenger car (blue) -->
+    <vType id="car" vClass="passenger" guiShape="passenger" color="30,144,255" 
+           carFollowModel="IDM" length="4.3" width="1.6">
+        <param key="accel" value="2.6"/>
+        <param key="decel" value="4.5"/>
+        <param key="tau" value="1.0"/>
+        <param key="minGap" value="2.5"/>
+        <param key="sigma" value="0.5"/>
+    </vType>
+
+    <!-- MANY ROUTES ACROSS THE ENTIRE NETWORK -->
+    
+    <!-- North-South flows -->
+    <flow id="flow_1to24" type="car" begin="0" end="600" number="50" from="1to3" to="23to24"/>
+    <flow id="flow_2to24" type="car" begin="0" end="600" number="40" from="2to1" to="23to24"/>
+    <flow id="flow_24to1" type="car" begin="0" end="600" number="40" from="24to13" to="1to3"/>
+    
+    <!-- East-West flows -->
+    <flow id="flow_7to10" type="car" begin="0" end="600" number="35" from="7to18" to="10to15"/>
+    <flow id="flow_18to12" type="car" begin="0" end="600" number="30" from="18to7" to="12to3"/>
+    
+    <!-- Central flows -->
+    <flow id="flow_10to20" type="car" begin="0" end="600" number="40" from="10to15" to="19to20"/>
+    <flow id="flow_15to5" type="car" begin="0" end="600" number="35" from="15to10" to="5to4"/>
+    <flow id="flow_19to13" type="car" begin="0" end="600" number="35" from="19to15" to="12to13"/>
+    
+    <!-- Diagonal flows -->
+    <flow id="flow_1to20" type="car" begin="0" end="600" number="30" from="1to3" to="19to20"/>
+    <flow id="flow_2to21" type="car" begin="0" end="600" number="25" from="2to6" to="21to22"/>
+    <flow id="flow_6to13" type="car" begin="0" end="600" number="25" from="6to8" to="12to13"/>
+    
+    <!-- Top area flows (to get vehicles at the top!) -->
+    <flow id="flow_1to2" type="car" begin="0" end="600" number="30" from="1to3" to="2to1"/>
+    <flow id="flow_2to6" type="car" begin="0" end="600" number="30" from="2to1" to="6to8"/>
+    <flow id="flow_6to7" type="car" begin="0" end="600" number="25" from="6to2" to="7to18"/>
+    <flow id="flow_8to18" type="car" begin="0" end="600" number="25" from="8to6" to="18to16"/>
+    
+    <!-- Middle flows -->
+    <flow id="flow_3to12" type="car" begin="0" end="600" number="30" from="3to1" to="12to13"/>
+    <flow id="flow_11to14" type="car" begin="0" end="600" number="25" from="11to12" to="14to15"/>
+    <flow id="flow_15to19" type="car" begin="0" end="600" number="30" from="15to14" to="19to20"/>
+    <flow id="flow_17to16" type="car" begin="0" end="600" number="20" from="17to19" to="16to18"/>
+    
+    <!-- Bottom flows -->
+    <flow id="flow_13to23" type="car" begin="0" end="600" number="25" from="13to12" to="23to24"/>
+    <flow id="flow_21to24" type="car" begin="0" end="600" number="20" from="21to22" to="24to23"/>
+    <flow id="flow_22to14" type="car" begin="0" end="600" number="20" from="22to21" to="14to11"/>
+    
+    <!-- Additional coverage flows -->
+    <flow id="flow_4to11" type="car" begin="0" end="600" number="20" from="4to5" to="11to4"/>
+    <flow id="flow_5to8" type="car" begin="0" end="600" number="20" from="5to9" to="8to16"/>
+    <flow id="flow_9to16" type="car" begin="0" end="600" number="20" from="9to10" to="16to17"/>
+    <flow id="flow_20to22" type="car" begin="0" end="600" number="20" from="20to19" to="22to15"/>
+
+</routes>

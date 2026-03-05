@@ -1,91 +1,106 @@
-# 🚦 Traffic Light Simulations - SUMO
+# 🚦 Traffic Simulator for Cybersecurity Training
 
-## 🚀 QUICK START:
+**Supported by NSF** | SUMO + TraCI | Python
 
-### **1. Simple Intersection (Learning):**
+A traffic simulation platform for studying and demonstrating cyber attacks on traffic infrastructure. Includes vehicle and pedestrian flows with adaptive and pedestrian-actuated traffic light control.
+
+---
+
+## 🚀 QUICK START
+
+### 1. Simple Intersection (vehicles only)
 ```bash
 ./START_DEMO.sh
 ```
 
-### **2. 2x3 Grid (Advanced - 6 Intersections):**
+### 2. Simple Intersection + Pedestrians (static timing)
 ```bash
-./RUN_GRID_2X3.sh
+./START_PED_DEMO.sh
 ```
 
-### **3. Sioux Falls Network (Professional - 24 Nodes):**
+### 3. Pedestrian-Actuated Traffic Lights (green only when peds waiting)
+```bash
+./RUN_PED_ACTUATED.sh
+```
+*Requires `SUMO_HOME` to be set.*
+
+### 4. Sioux Falls Network (adaptive, queue-based control)
 ```bash
 ./sioux_falls/RUN_SIOUX_FALLS.sh
 ```
 
-Then click the ▶️ Play button in SUMO!
+### 5. Sioux Falls Adaptive Controller (TraCI)
+```bash
+./sioux_falls/RUN_ADAPTIVE.sh
+```
+
+Click the ▶️ Play button in SUMO to run!
 
 ---
 
-## 📁 FILES (7 Total - Super Clean!)
+## 📋 WHAT WE BUILT
 
-### **To Run:**
-- `START_DEMO.sh` ⭐ **Run this script!**
+### Simple 4-Way Intersection
+- Network with traffic lights and coordinated phases
+- 270 vehicles, 8 flows (N-S, E-W, turns)
+- IDM car-following model
+- Good for learning SUMO basics
 
-### **SUMO Simulation Files:**
-- `simple_intersection.net.xml` - The intersection network
-- `simple_intersection.rou.xml` - Vehicle routes (270 vehicles)
-- `simple_intersection.sumocfg` - Main configuration
-- `simple_gui.xml` - Display settings (zoom, delay)
+### Pedestrian Crossings
+- Sidewalks and 4 pedestrian crossings at the intersection
+- Person flows (N-S, S-N, E-W, W-E) with configurable periods
+- Pedestrian phases in traffic light program
 
-### **Documentation:**
-- `README.md` - This file
-- `QUICK_REFERENCE.txt` - Control shortcuts
+### Pedestrian-Actuated Controller (`ped_actuated_controller.py`)
+- **Detection:** Uses TraCI to detect peds waiting at crossings (`getWaitingTime`, `getNextEdge`, `getLastStepPersonIDs`)
+- **Logic:** Pedestrian green only when someone is waiting (after min vehicle green)
+- **Control:** Direct state control via `setRedYellowGreenState` for reliable switching
+- **Parameters:** MIN_VEHICLE_GREEN=15s, MAX_GREEN=60s
 
----
+### Vehicle-Actuated Controller (`sioux_falls/traffic_light_controller.py`)
+- Queue-based extension: extends green when vehicles are waiting
+- MIN_GREEN=5s, MAX_GREEN=60s, YELLOW=3s, EXTENSION=3s
+- Uses `getLastStepHaltingNumber()` for queue detection
 
-## 📊 SIMULATIONS AVAILABLE:
-
-### **1. Simple Intersection** (`./START_DEMO.sh`)
-- 1 intersection with traffic lights
-- 270 vehicles (single vehicle type)
-- 8 traffic flows
-- **Good for:** Learning basics
-
-### **2. 2x3 Grid Network** (`./RUN_GRID_2X3.sh`)
-- **6 intersections** (2 rows × 3 columns)
-- **~650 vehicles** with **4 vehicle types:**
-  - 🚗 Cars (blue) - Fast
-  - 🚚 Trucks (brown) - Slow & heavy
-  - 🚌 Buses (orange) - Medium
-  - 🏍️ Motorcycles (magenta) - Very fast
-- **14 traffic flows** (horizontal, vertical, diagonal)
-- **Good for:** Advanced demonstration
-
-### **3. Sioux Falls Network** (`./sioux_falls/RUN_SIOUX_FALLS.sh`)
-- **24 intersections** (real-world network)
-- **76 edges** (roads connecting nodes)
-- **55 vehicles** with **3 OD pairs:**
-  - 🔵 Blue: Node 1 → 24 (35 vehicles)
-  - 🩷 Pink: Node 10 → 20 (10 vehicles)
-  - 🟣 Purple: Node 19 → 13 (10 vehicles)
-- **Standard research network** used worldwide
-- **Good for:** Professional demonstration & research
+### Sioux Falls Network
+- Real-world research network (24 nodes, 76 edges)
+- Converted from GraphML via `convert_sioux_to_sumo.py`
+- Multiple vehicle flows and OD pairs
 
 ---
 
-## 🎮 CONTROLS:
+## 📁 PROJECT STRUCTURE
+
+| File / Folder | Description |
+|---------------|-------------|
+| `simple_intersection.*` | 4-way intersection (vehicles only) |
+| `simple_intersection_ped.*` | Same intersection + sidewalks + pedestrian crossings |
+| `ped_actuated_controller.py` | TraCI controller for pedestrian-actuated signals |
+| `simple_gui.xml` | SUMO GUI display settings |
+| `sioux_falls/` | Sioux Falls network, adaptive controller, conversion scripts |
+
+---
+
+## 🛠️ REQUIREMENTS
+
+- [SUMO](https://eclipse.dev/sumo/) (Simulation of Urban Mobility)
+- Python 3
+- `SUMO_HOME` environment variable set (for TraCI scripts)
+
+---
+
+## 🎮 CONTROLS
 
 - **▶️ Play:** Click green triangle or press SPACE
-- **⏸️ Pause:** Press SPACE
-- **🔍 Zoom:** Mouse wheel or Ctrl+F to fit
+- **⏸️ Pause:** SPACE
+- **🔍 Zoom:** Mouse wheel or Ctrl+F
 - **👆 Pan:** Right-click + drag
-- **⏱️ Speed:** Adjust "Delay (ms)" slider (0=fastest, 500=slowest)
+- **⏱️ Speed:** Adjust "Delay (ms)" slider
 
 ---
 
-## ✅ WHAT YOU BUILT:
+## 📚 REFERENCES
 
-1. ✅ 4-way intersection network from scratch
-2. ✅ Traffic light system with coordinated phases
-3. ✅ 270 vehicles with realistic IDM car-following
-4. ✅ Multiple routes (straight & turning movements)
-5. ✅ Professional SUMO simulation
-
----
-
-**Ready for your meeting! Run `./START_DEMO.sh` now!** 🚀
+- [SUMO Documentation](https://sumo.dlr.de/docs/)
+- [TraCI Tutorial](https://sumo.dlr.de/docs/Tutorials/TraCI4Traffic_Lights.html)
+- [TraCI Pedestrian Crossing](https://sumo.dlr.de/docs/Tutorials/TraCIPedCrossing.html)

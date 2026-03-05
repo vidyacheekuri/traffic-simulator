@@ -1,6 +1,6 @@
 # 🚦 Traffic Simulator for Cybersecurity Training
 
-**Supported by NSF** | SUMO + TraCI | Python
+**Supported by NSF (National Science Foundation)** | SUMO + TraCI | Python
 
 A traffic simulation platform for studying and demonstrating cyber attacks on traffic infrastructure. Includes vehicle and pedestrian flows with adaptive and pedestrian-actuated traffic light control.
 
